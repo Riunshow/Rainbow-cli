@@ -14,7 +14,8 @@ const figlet = require('figlet')
  * https://github.com/chalk/chalk
  */
 const chalk = require('chalk')
-
+const error = chalk.bold.red;
+const warning = chalk.keyword('orange');
 /**
  * 终端交互
  * 
@@ -71,34 +72,35 @@ setTimeout(() => {
 			message: '是否需要礼物功能?',
 			default: false
 		},
-		{
-			type: 'expand',
-			name: 'expand',
-			message: '测试 expand',
-			choices: [
-				{
-					key: '1',
-					name: 'name1',
-					value: 'value1'
-				},
-				{
-					key: '2',
-					name: 'name2',
-					value: 'value2'
-				},
-				{
-					key: '3',
-					name: 'name3',
-					value: 'value3'
-				},
-			]
-		}
+		// 选择
+		// {
+		// 	type: 'expand',
+		// 	name: 'expand',
+		// 	message: '测试 expand',
+		// 	choices: [
+		// 		{
+		// 			key: '1',
+		// 			name: 'name1',
+		// 			value: 'value1'
+		// 		},
+		// 		{
+		// 			key: '2',
+		// 			name: 'name2',
+		// 			value: 'value2'
+		// 		},
+		// 		{
+		// 			key: '3',
+		// 			name: 'name3',
+		// 			value: 'value3'
+		// 		},
+		// 	]
+		// }
 	]
 
 	inquirer.prompt(questions).then(answers => {
 		// 获取选项
 		const jsonAns = answers
-		console.log(jsonAns)
+		// console.log(jsonAns)
 
 		// 展示loading
 
@@ -125,9 +127,9 @@ setTimeout(() => {
 	function downloadGitRepo(gitRepo, spinner) {
 		download(gitRepo, 'project/', function (err) {
 			if (err) {
-				console.log('download error: ', err);
 				spinner.fail()
-				console.log('\n' + chalk.red('模板生成失败, 请检查网络是否有问题, 如有疑问请联系 zhubotaigg@gmail.com' + '\n' + '感谢您的支持 ^.^' + '\n'));
+				console.log('\n' + error('download error: ' + err.message));
+				console.log('\n' + error('模板生成失败, 请检查网络是否有问题, 如有疑问请联系 zhubotaigg@gmail.com' + '\n' + '感谢您的支持 ^.^' + '\n'));
 			}else {
 				spinner.succeed()
 				console.log('\n' + chalk.yellow('模板生成成功, 感谢您的支持 ^.^' + '\n'));
