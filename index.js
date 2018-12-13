@@ -117,10 +117,11 @@ setTimeout(() => {
 		spinner.start()
 
 		// 开始下载
-		download('flipxfx/download-git-repo-fixture', 'test/tmp', function (err) {
+		// flipxfx/download-git-repo-fixture
+		download('flipxfx/a', 'test/tmp', function (err) {
 			if (err) {
 				spinner.fail()
-				console.log('\n' + chalk.red('模板生成失败, 请检查网络是否有问题, 如有疑问请联系 zhubotaigg@gmail.com, 感谢您的支持 ^.^' + '\n'));
+				console.log('\n' + chalk.red('模板生成失败, 请检查网络是否有问题, 如有疑问请联系 zhubotaigg@gmail.com' + '\n' + '感谢您的支持 ^.^' + '\n'));
 			}else {
 				spinner.succeed()
 				console.log('\n' + chalk.yellow('模板生成成功, 感谢您的支持 ^.^' + '\n'));
