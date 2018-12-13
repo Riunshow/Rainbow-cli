@@ -106,20 +106,26 @@ setTimeout(() => {
 
 		if (jsonAns.danmu && !jsonAns.gift) {
 			spinner.text = '弹幕功能开启, 礼物功能关闭'
+			downloadGitRepo('Riunshow/VideoLiveSystemShow#one', spinner)
 		}else if (!jsonAns.danmu && jsonAns.gift) {
 			spinner.text = '弹幕功能关闭, 礼物功能开启'
+			downloadGitRepo('Riunshow/VideoLiveSystemShow#two', spinner)
 		}else if (jsonAns.danmu && jsonAns.gift) {
 			spinner.text = '弹幕功能开启, 礼物功能开启'
+			downloadGitRepo('Riunshow/VideoLiveSystemShow#three', spinner)
 		}else {
 			spinner.text = '弹幕功能关闭, 礼物功能关闭'
+			downloadGitRepo('Riunshow/VideoLiveSystemShow#zero', spinner)
 		}
 
 		spinner.start()
 
-		// 开始下载
-		// flipxfx/download-git-repo-fixture
-		download('flipxfx/a', 'test/tmp', function (err) {
+	})
+
+	function downloadGitRepo(gitRepo, spinner) {
+		download(gitRepo, 'project/', function (err) {
 			if (err) {
+				console.log('download error: ', err);
 				spinner.fail()
 				console.log('\n' + chalk.red('模板生成失败, 请检查网络是否有问题, 如有疑问请联系 zhubotaigg@gmail.com' + '\n' + '感谢您的支持 ^.^' + '\n'));
 			}else {
@@ -127,8 +133,7 @@ setTimeout(() => {
 				console.log('\n' + chalk.yellow('模板生成成功, 感谢您的支持 ^.^' + '\n'));
 			}
 		})
-
-	})
+	}
 
 
 }, 200)
